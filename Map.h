@@ -1,6 +1,6 @@
-template <typename keyType, typename valueType>
+#include <exception>
 
-// I gotta implement map using linked list
+template <typename keyType, typename valueType>
 
 class Map {
     private:
@@ -17,6 +17,18 @@ class Map {
         };
 
         Node* head;
+
+        Node* findPtr(const keyType k) 
+        {
+            Node* current = head;
+            while (current != NULL) {
+                if (current->key == k) {
+                    return current;
+                }
+                current = current->next;
+            }
+            return NULL;
+        }
     
     public:
         Map() 
@@ -24,27 +36,29 @@ class Map {
             head = nullptr;
         }
 
-        valueType find(const keyType k) 
+        ~Map() 
         {
             Node* current = head;
-            while (current) {
-                if (current->key == k) {
-                    return current->value;
-                }
+            while (current != NULL) {
+                Node* temp = current;
                 current = current->next;
+                delete temp;
             }
-            return NULL;
+        }
+
+        valueType find(const keyType k) 
+        {
+            Node* node = findPtr(k);
+            if (node == NULL) {
+                throw std::invalid_argument("Key not found.");
+            }
+            return node->value;
         }
 
         void add(const keyType k, const valueType v) 
         {
             Node* newNode = new Node(k, v);
-            if (!head) {
-                head = newNode;
-            }
-            else {
-                head->next = newNode;
-                head = newNode;
-            }
+            newNode->next = head;
+            head = newNode;
         }
 };
