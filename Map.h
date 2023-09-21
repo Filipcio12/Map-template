@@ -17,18 +17,6 @@ class Map {
         };
 
         Node* head;
-
-        Node* findPtr(const keyType k) 
-        {
-            Node* current = head;
-            while (current != NULL) {
-                if (current->key == k) {
-                    return current;
-                }
-                current = current->next;
-            }
-            return NULL;
-        }
     
     public:
         Map() 
@@ -46,9 +34,21 @@ class Map {
             }
         }
 
-        valueType find(const keyType k) 
+        Node* find(const keyType k) 
         {
-            Node* node = findPtr(k);
+            Node* current = head;
+            while (current != NULL) {
+                if (current->key == k) {
+                    return current;
+                }
+                current = current->next;
+            }
+            return NULL;
+        }
+
+        valueType findValue(const keyType k) 
+        {
+            Node* node = find(k);
             if (node == NULL) {
                 throw std::invalid_argument("Key not found.");
             }
@@ -57,6 +57,11 @@ class Map {
 
         void add(const keyType k, const valueType v) 
         {
+            Node* node = find(k);
+            if (node != NULL) {
+                node->value = v;
+                return;
+            }
             Node* newNode = new Node(k, v);
             newNode->next = head;
             head = newNode;
