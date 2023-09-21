@@ -61,4 +61,14 @@ class Map {
             newNode->next = head;
             head = newNode;
         }
+
+        friend std::ostream& operator<<(std::ostream& os, const Map& m)
+        {
+            Node* current = m.head;
+            while (current != NULL) {
+                os << current->key << "\t" << current->value << "\n"; 
+                current = current->next;
+            }
+            return os;
+        }
 };
