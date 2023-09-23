@@ -29,11 +29,28 @@ class Map {
             }
             return NULL;
         }
+
+        void insert(const keyType k, const valueType v) 
+        {
+            Node* newNode = new Node(k, v);
+            newNode->next = head;
+            head = newNode;
+        }
     
     public:
         Map() 
         {
             head = nullptr;
+        }
+
+        Map(const Map& m)
+        {
+            head = nullptr;
+            Node* current = m.head;
+            while (current != NULL) {
+                insert(current->key, current->value);
+                current = current->next;
+            }
         }
 
         ~Map() 
@@ -44,6 +61,24 @@ class Map {
                 current = current->next;
                 delete temp;
             }
+        }
+
+        Map& operator=(const Map& m) 
+        {
+            Node* current = head;
+            while (current != NULL) {
+                Node* temp = current;
+                current = current->next;
+                delete temp;
+            }
+            head = nullptr;
+
+            current = m.head;
+            while (current != NULL) {
+                insert(current->key, current->value);
+                current = current->next;
+            }
+            return *this;
         }
 
         valueType* find(const keyType k)
