@@ -122,13 +122,18 @@ class Map {
             head = newNode;
         }
 
+        friend void printReverse(std::ostream& os, Node* h)
+        {
+            if (h == NULL) {
+                return;
+            }
+            printReverse(os, h->next);
+            os << h->key << "\t" << h->value << "\n";
+        }
+
         friend std::ostream& operator<<(std::ostream& os, const Map& m)
         {
-            Node* current = m.head;
-            while (current != NULL) {
-                os << current->key << "\t" << current->value << "\n"; 
-                current = current->next;
-            }
+            printReverse(os, m.head);
             return os;
         }
 };
