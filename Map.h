@@ -36,6 +36,20 @@ class Map {
             newNode->next = head;
             head = newNode;
         }
+
+        void reverse()
+        {
+            Node* current = head;
+            Node *prev = nullptr, *next = nullptr;
+            while (current != NULL)
+            {
+                next = current->next;
+                current->next = prev;
+                prev = current;
+                current = next;
+            }
+            head = prev;
+        }
     
     public:
         Map() 
@@ -51,6 +65,7 @@ class Map {
                 insert(current->key, current->value);
                 current = current->next;
             }
+            reverse();
         }
 
         ~Map() 
@@ -65,19 +80,14 @@ class Map {
 
         Map& operator=(const Map& m) 
         {
-            Node* current = head;
-            while (current != NULL) {
-                Node* temp = current;
-                current = current->next;
-                delete temp;
-            }
+            this->~Map();
             head = nullptr;
-
-            current = m.head;
+            Node* current = m.head;
             while (current != NULL) {
                 insert(current->key, current->value);
                 current = current->next;
             }
+            reverse();
             return *this;
         }
 
