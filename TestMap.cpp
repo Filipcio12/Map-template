@@ -14,6 +14,8 @@ int main() {
 	Database database;
 	addEmployees(database);
 
+	cout << database;
+	/*
 	Database newDatabase = database;									// Make a copy of database
 	newDatabase.add(830505432, Employee("Ewa Nowak", "charwoman", 43));	// Add fourth employee
 	modifyEmployees(newDatabase);
@@ -23,7 +25,8 @@ int main() {
 
 	database = newDatabase;												// Update original database
 
-	cout << "Database after the assignment:" << endl << database << endl;
+	cout << "Database after the assignment:" << endl << database << endl;*/
+	return 0;
 };
 
 void addEmployees(Database& database) {
@@ -31,7 +34,7 @@ void addEmployees(Database& database) {
 	database.add(510212881, Employee("Adam Nowak", "storekeeper", 54));	// Add second employee
 	database.add(730505129, Employee("Anna Zaradna", "secretary", 32));	// Add third employee
 }
-
+/*
 void modifyEmployees(Database& database) {
 	Employee* employeePtr;
 
@@ -41,3 +44,4 @@ void modifyEmployees(Database& database) {
 	employeePtr = database.find(761028073);								// Find employee using its ID
 	employeePtr->age = 29;												// Modify the age of employee
 }
+*/
