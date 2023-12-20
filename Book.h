@@ -16,7 +16,7 @@ class Book {
         friend std::ostream& operator<<(std::ostream& os, const Book& b) 
         {
             std::string status = (b.onBookshelf) ? "on bookshelf" : "borrowed";
-            os << b.author << "\t" << b.category << "\t" << b.numOfPages << "\t" << status;
+            os << b.author << ", " << b.category << ", " << b.numOfPages << ", " << status;
             return os;
         }
 };

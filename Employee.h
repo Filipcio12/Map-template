@@ -13,7 +13,7 @@ class Employee {
 
         friend std::ostream& operator<<(std::ostream& os, const Employee& e)
         {
-            os << e.name << "\t" << e.position << "\t" << e.age;
+            os << e.name << ", " << e.position << ", " << e.age;
             return os;
         }
 };

@@ -2,10 +2,10 @@
 headers = Map.h Employee.h Book.h
 
 # List your *.cpp files:
-sources = main.cpp
+sources = TestMap.cpp
 
 # Specify name of your program:
-executable = myprogram
+executable = myprogram1
 
 $(executable): $(headers) $(sources)
 	g++ -g -Wall -pedantic $(sources) -o $(executable)

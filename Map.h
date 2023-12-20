@@ -49,7 +49,7 @@ class Map {
                 return;
             }
             printReverse(os, h->next);
-            os << h->key << "\t" << h->value << "\n";
+            os << h->key << ": " << h->value << "\n";
         }
     
     public:
