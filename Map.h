@@ -42,6 +42,15 @@ class Map {
             }
             head = prev;
         }
+
+        friend void printReverse(std::ostream& os, Node* h)
+        {
+            if (h == NULL) {
+                return;
+            }
+            printReverse(os, h->next);
+            os << h->key << "\t" << h->value << "\n";
+        }
     
     public:
         class KeyNotFound {};
@@ -113,15 +122,6 @@ class Map {
             Node* newNode = new Node(k, v);
             newNode->next = head;
             head = newNode;
-        }
-
-        friend void printReverse(std::ostream& os, Node* h)
-        {
-            if (h == NULL) {
-                return;
-            }
-            printReverse(os, h->next);
-            os << h->key << "\t" << h->value << "\n";
         }
 
         friend std::ostream& operator<<(std::ostream& os, const Map& m)
